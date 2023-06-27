@@ -57,7 +57,7 @@
     "not dead"
   ],
   "gitHooks": {
-    "pre-commit": "lint-staged"
+    "1pre-commit": "lint-staged"
   },
   "lint-staged": {
     "*.{js,vue}": [
