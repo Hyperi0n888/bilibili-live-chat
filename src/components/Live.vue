@@ -1,5 +1,5 @@
 <template>
-  <div id="live">
+  <div id="live" :style="{ backgroundColor: props.backgroundColor }">
     <danmaku-list
       ref="giftPinList"
       v-bind="props"
@@ -8,6 +8,12 @@
       v-if="props.giftPin"
     />
     <danmaku-list ref="danmakuList" v-bind="props" />
+    <input-group>
+      <input class="form-control" cols="30" rows="3" placeholder="发个弹幕呗~" />
+      <span class="input-group-btn">
+        <button class="btn btn-primary" type="button">biu~</button>
+      </span>
+    </input-group>
   </div>
 </template>
 
@@ -18,14 +24,14 @@ import { propsType } from '@/utils/props';
 import { setFace } from '@/utils/face';
 
 import DanmakuList from '@/components/DanmakuList';
+import InputGroup from '@/components/InputGroup.vue';
 
 export default {
-  components: { DanmakuList },
+  components: { DanmakuList, InputGroup },
   props: propsType,
   setup(props) {
     const giftPinList = ref(null);
     const danmakuList = ref(null);
-
     const giftCombMap = new Map();
     const giftShowFace = computed(() => !['false', 'gift'].includes(props.face));
 

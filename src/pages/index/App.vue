@@ -136,6 +136,15 @@
           v-model="form.blockUID"
         />
       </input-group>
+      <!-- 背景颜色 -->
+      <input-group header="背景颜色">
+        <input
+          class="form-control"
+          type="color"
+          placeholder="选填，如不指定就选白色"
+          v-model.number="form.backgroundColor"
+        />
+      </input-group>
     </div>
   </div>
 </template>
@@ -155,9 +164,12 @@ export default defineComponent({
       ...defaultProps,
       ...sget('setting', {}),
     });
+    console.log(form);
     intProps.forEach(key => {
       watchEffect(() => {
-        if (typeof form[key] === 'number') form[key] = Math.max(Math.floor(form[key]), 0);
+        if (typeof form[key] === 'number') {
+          form[key] = Math.max(Math.floor(form[key]), 0);
+        }
       });
     });
 
@@ -175,6 +187,7 @@ export default defineComponent({
       )
     );
     watchEffect(() => {
+      console.log(simpleForm.value);
       sset('setting', simpleForm.value);
     });
 
