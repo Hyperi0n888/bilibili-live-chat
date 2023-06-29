@@ -15,8 +15,7 @@ export const defaultProps = {
   delay: '',
   blockUID: '',
   debug: '',
-  backgroundColor: '#FFFFFF',
-  backgroundOpactiy: 1,
+  backgroundColor: '#FFFFFF'
 };
 Object.freeze(defaultProps);
 

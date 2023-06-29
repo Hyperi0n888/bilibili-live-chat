@@ -142,7 +142,7 @@
           class="form-control"
           type="color"
           placeholder="选填，如不指定就选白色"
-          v-model.number="form.backgroundColor"
+          v-model="form.backgroundColor"
         />
       </input-group>
     </div>
@@ -164,7 +164,7 @@ export default defineComponent({
       ...defaultProps,
       ...sget('setting', {}),
     });
-    console.log(form);
+    // console.log(form);
     intProps.forEach(key => {
       watchEffect(() => {
         if (typeof form[key] === 'number') {
@@ -186,14 +186,19 @@ export default defineComponent({
         Object.keys(defaultProps)
       )
     );
+
+    const goLive = () => {
+      let form = simpleForm.value
+      form.backgroundColor = form.backgroundColor.substring(1)
+      window.location.href = `live.html#${qss(form)}`
+    }
     watchEffect(() => {
-      console.log(simpleForm.value);
       sset('setting', simpleForm.value);
     });
 
     return {
       form,
-      goLive: () => (window.location.href = `live.html#${qss(simpleForm.value)}`),
+      goLive,
       options: readonly(selectOptions),
     };
   },

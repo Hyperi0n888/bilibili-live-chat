@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            background-color: #EFEFEF;
+        }
+        .paper {
+            margin: 0 auto;
+            width: 594.3pt;
+            height: 840.51pt;
+            padding: 79.24pt 62.26pt 73.58pt 73.58pt;
+            box-sizing: border-box;
+            box-shadow: 0px 1px 10px #DDD;
+            background-color: white;
+            outline: none;
+            overflow: hidden;
+            margin-block-start: 30px;
+            margin-block-end: 30px;
+        }
+    </style>
+    <script>
+        function createPaper() {
+            let paper = document.createElement("div")
+            paper.className = "paper"
+            paper.contentEditable = "true"
+            paper.addEventListener("input", function(e) {
+                if(e.target.scrollHeight > e.target.clientHeight) {
+                    createPaper().focus()
+                }
+            })
+            document.body.appendChild(paper)
+            return paper
+        }
+        window.onload = function(e) {
+            createPaper()
+        }
+    </script>
+</head>
+<body>
+    <!-- <div class="paper" contenteditable="true"></div> -->
+</body>
+</html>
